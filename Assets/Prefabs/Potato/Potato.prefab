@@ -588,18 +588,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body:
   - {fileID: 21300000, guid: ec1c4bd634e0d1d4587b23d08acd5f81, type: 3}
+  - {fileID: 21300000, guid: f192aba4d23515343b35f8edb58d2a11, type: 3}
+  - {fileID: 21300000, guid: 4c4e8517f784f3541ae35c24a2bae678, type: 3}
   hats:
   - {fileID: 21300000, guid: e9a5348df6600404594ab034c64badfb, type: 3}
   - {fileID: 21300000, guid: 568ed19ac7ca4184793afe77ec2414fe, type: 3}
   - {fileID: 21300000, guid: e0a34a40719084141bdfc9f5e2cb4994, type: 3}
+  - {fileID: 21300000, guid: 64bb7da67edfe474f8d2671d0503bcd7, type: 3}
   eyes:
   - {fileID: 21300000, guid: af2b11f459c35df408e4c8812ad6625d, type: 3}
+  - {fileID: 21300000, guid: abf819f70a838544ba55e6de63e48345, type: 3}
+  - {fileID: 21300000, guid: 102a30f65b763f14b983e766611fb523, type: 3}
+  - {fileID: 21300000, guid: 828cce9bb729b7b4fa0d3c6ad663200d, type: 3}
   hands:
   - {fileID: 21300000, guid: ebcc758080dca8a4295866df802eb6c1, type: 3}
   - {fileID: 21300000, guid: d477c38cee47a4740b2d757f7cec2533, type: 3}
+  - {fileID: 21300000, guid: af0e2db5b91d2934e9c9a0705d9f056e, type: 3}
+  - {fileID: 21300000, guid: 594ef3fc655fa714799aa174933c1bbb, type: 3}
   accessories:
   - {fileID: 21300000, guid: da497518127194a42ac3d3c8e87b61a4, type: 3}
   - {fileID: 21300000, guid: 3a144bdbd2a7ef74db4263071fb683e1, type: 3}
+  - {fileID: 21300000, guid: 1cca7f77f7c95584997ff4e4479c3a97, type: 3}
+  - {fileID: 21300000, guid: 5236b15438024d445a21e74601f6e7d7, type: 3}
   feet:
   - {fileID: 21300000, guid: 9878fc7cef8cdea4ba67757a650b342f, type: 3}
   - {fileID: 21300000, guid: 2e9a43744c3fadb489a9812393b4aa82, type: 3}
