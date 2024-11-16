@@ -511,6 +511,10 @@ PrefabInstance:
       value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 440281850590773744, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.315
+      objectReference: {fileID: 0}
+    - target: {fileID: 440281850590773744, guid: 3787505692af9064f98e716616baa185, type: 3}
       propertyPath: m_LocalPosition.z
       value: -4.59
       objectReference: {fileID: 0}
@@ -542,9 +546,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1487811194786283594, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_Name
+      value: Hat
+      objectReference: {fileID: 0}
+    - target: {fileID: 3388376091631826750, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_Name
+      value: RightFoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3641129733939449760, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_Name
+      value: LeftFoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6467143108461821567, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_Name
+      value: Eyes
+      objectReference: {fileID: 0}
     - target: {fileID: 6951898537584906260, guid: 3787505692af9064f98e716616baa185, type: 3}
       propertyPath: m_Name
       value: Potato
+      objectReference: {fileID: 0}
+    - target: {fileID: 7622079420764680592, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_Name
+      value: BodyAccessory
       objectReference: {fileID: 0}
     - target: {fileID: 8400458745602652745, guid: 3787505692af9064f98e716616baa185, type: 3}
       propertyPath: m_Speed
