@@ -107,7 +107,7 @@ public class Potato : MonoBehaviour
     }
 
     // Déplace la patate vers une position aléatoire
-    private void MoveToRandomPosition()
+    public void MoveToRandomPosition()
     {
         // Rayon de recherche autour de la position actuelle
         float searchRadius = 10f;

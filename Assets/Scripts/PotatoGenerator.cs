@@ -20,11 +20,17 @@ public class PotatoGenerator : MonoBehaviour
             var potato = Instantiate(potatoPrefab, position, Quaternion.identity);
             var potatoScript = potato.GetComponent<Potato>();
             potatoScript.symetric = symetry;
+            potato.GetComponent<Timer>().timeRemaining = Random.Range(10, 15);
 
             if (i == 0)
             {
                 potatoScript.isTarget = true;
             }
         }
+    }
+
+    void Update()
+    {
+        
     }
 }
