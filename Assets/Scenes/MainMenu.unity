@@ -195,7 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_shooterStartButton: {fileID: 1981945948}
   m_informerStartButton: {fileID: 1984423310}
-  m_shooterSceneName: Shooter
+  m_shooterSceneName: Subway
   m_informerSceneName: Informer
 --- !u!4 &85494411
 Transform:
