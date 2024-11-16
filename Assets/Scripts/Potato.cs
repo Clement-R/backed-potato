@@ -46,4 +46,43 @@ public class Potato : MonoBehaviour
             }
         }
     }
+
+    public void RemoveAccessory(string type)
+    {
+        Transform slot = null;
+
+        // Détermine le slot correspondant au type d'accessoire
+        switch (type.ToLower())
+        {
+            case "hat":
+                slot = hatSlot;
+                break;
+            case "hand":
+                slot = handSlot;
+                break;
+            case "accessory":
+                slot = accessorySlot;
+                break;
+            case "foot":
+                slot = footSlot;
+                break;
+            default:
+                Debug.LogWarning("Type d'accessoire inconnu : " + type);
+                return;
+        }
+
+        // Supprime l'accessoire du SpriteRenderer
+        if (slot != null)
+        {
+            SpriteRenderer sr = slot.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                sr.sprite = null; // Enlève le sprite
+            }
+            else
+            {
+                Debug.LogError("Le slot " + slot.name + " n'a pas de SpriteRenderer !");
+            }
+        }
+    }
 }
