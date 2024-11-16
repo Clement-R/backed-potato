@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.AI;
+using System;
+using Random = UnityEngine.Random;
 
 public class Potato : MonoBehaviour
 {
@@ -35,6 +38,23 @@ public class Potato : MonoBehaviour
     // [HideInInspector]
     public bool isTarget = false;
 
+    private NavMeshAgent agent;
+
+    private void Awake()
+    {
+        // Récupère le composant NavMeshAgent
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+    }
+
+    // Déplace l'objet vers une destination donnée
+    public void MoveTo(Vector3 destination)
+    {
+        if (agent != null)
+        {
+            agent.SetDestination(destination);
+        }
+    }
     public void AddAccessories()
     {
 
@@ -73,5 +93,35 @@ public class Potato : MonoBehaviour
     private void Start()
     {
         AddAccessories();
+        
+    }
+
+    private void Update()
+    {
+        transform.LookAt(Camera.main.transform);
+        // Déplace la patate à une position aléatoire toutes les X secondes
+        if (Input.GetKeyDown(KeyCode.Space)) // Appuie sur la barre espace pour tester
+        {
+            MoveToRandomPosition();
+        }
+    }
+
+    // Déplace la patate vers une position aléatoire
+    private void MoveToRandomPosition()
+    {
+        // Rayon de recherche autour de la position actuelle
+        float searchRadius = 10f;
+
+        // Génère une direction aléatoire dans un rayon donné
+        Vector3 randomDirection = Random.insideUnitSphere * searchRadius;
+        randomDirection += transform.position;
+
+        // Trouve un point navigable proche de la direction générée
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, searchRadius, NavMesh.AllAreas))
+        {
+            // Déplace la patate vers le point trouvé
+            MoveTo(hit.position);
+        }
     }
 }
