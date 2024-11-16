@@ -28,7 +28,12 @@ public class Potato : MonoBehaviour
     public SpriteRenderer rightHandSlot;
     public SpriteRenderer leftFootSlot;
     public SpriteRenderer rightFootSlot;
+
+    [HideInInspector]
     public bool symetric = true;
+
+    [HideInInspector]
+    public bool isTarget = false;
 
     public void AddAccessories() {
       
