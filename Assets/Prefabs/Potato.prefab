@@ -664,9 +664,9 @@ MonoBehaviour:
   body:
   - {fileID: 21300000, guid: ec1c4bd634e0d1d4587b23d08acd5f81, type: 3}
   hats:
+  - {fileID: 21300000, guid: e9a5348df6600404594ab034c64badfb, type: 3}
   - {fileID: 21300000, guid: 568ed19ac7ca4184793afe77ec2414fe, type: 3}
   - {fileID: 21300000, guid: e0a34a40719084141bdfc9f5e2cb4994, type: 3}
-  - {fileID: 21300000, guid: e9a5348df6600404594ab034c64badfb, type: 3}
   eyes:
   - {fileID: 21300000, guid: af2b11f459c35df408e4c8812ad6625d, type: 3}
   hands:
@@ -688,6 +688,7 @@ MonoBehaviour:
   rightHandSlot: {fileID: 2566840600543989904}
   leftFootSlot: {fileID: 8146360767301534927}
   rightFootSlot: {fileID: 8305274159577322484}
+  symetric: 1
 --- !u!1 &8587501494769462735
 GameObject:
   m_ObjectHideFlags: 0

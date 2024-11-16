@@ -1,8 +1,12 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     private static GameManager m_instance;
+
+    [HideInInspector]
+    public bool IsPotatoesSymetric = true;
 
     public static GameManager Instance
     {
@@ -26,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        // a faire en fonction des niveau
+        IsPotatoesSymetric = true;
         DontDestroyOnLoad(gameObject);
     }
 
