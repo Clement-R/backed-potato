@@ -45,11 +45,6 @@ public class PotatoGenerator : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-    void Update()
-    {
-        
-=======
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
@@ -64,6 +59,5 @@ public class PotatoGenerator : MonoBehaviour
         }
         result = Vector3.zero;
         return false;
->>>>>>> 335b7aad17d8907ae7f5c79d72ad74afdccc4ce4
     }
 }

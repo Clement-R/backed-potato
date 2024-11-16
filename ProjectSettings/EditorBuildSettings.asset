@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 06834034ea73e864d8b74f95e83af10e
   - enabled: 1
-    path: Assets/Scenes/Shooter.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Subway/Subway.unity
+    guid: bffa333fc564c70419e29b2e0c735448
   - enabled: 1
     path: Assets/Scenes/Informer.unity
     guid: ba4cc8e1b431ad840b14d0ff02025a75

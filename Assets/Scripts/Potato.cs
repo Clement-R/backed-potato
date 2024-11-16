@@ -38,7 +38,7 @@ public class Potato : MonoBehaviour
     public bool isTarget = false;
 
     private NavMeshAgent agent;
-    
+
     private Animator animator;
 
     private void Awake()
@@ -58,6 +58,7 @@ public class Potato : MonoBehaviour
             agent.SetDestination(destination);
         }
     }
+
     public void AddAccessories()
     {
 
@@ -96,19 +97,14 @@ public class Potato : MonoBehaviour
     private void Start()
     {
         AddAccessories();
-        
+        MoveToRandomPosition();
     }
 
     private void Update()
     {
         transform.LookAt(Camera.main.transform);
-        // Déplace la patate à une position aléatoire toutes les X secondes
-        if (Input.GetKeyDown(KeyCode.Space)) // Appuie sur la barre espace pour tester
-        {
-            MoveToRandomPosition();
-        }
     }
-    
+
     // Déplace la patate vers une position aléatoire
     public void MoveToRandomPosition()
     {
