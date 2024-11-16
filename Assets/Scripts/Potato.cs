@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AI;
-using System;
 using Random = UnityEngine.Random;
 
 public class Potato : MonoBehaviour
@@ -39,12 +38,16 @@ public class Potato : MonoBehaviour
     public bool isTarget = false;
 
     private NavMeshAgent agent;
+    
+    private Animator animator;
 
     private void Awake()
     {
         // Récupère le composant NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
+
+        animator = GetComponent<Animator>();
     }
 
     // Déplace l'objet vers une destination donnée
@@ -105,7 +108,7 @@ public class Potato : MonoBehaviour
             MoveToRandomPosition();
         }
     }
-
+    
     // Déplace la patate vers une position aléatoire
     private void MoveToRandomPosition()
     {
