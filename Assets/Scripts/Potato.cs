@@ -5,32 +5,63 @@ public class Potato : MonoBehaviour
 {
     // Liste publique visible dans l'inspecteur
     [SerializeField]
+    private List<Sprite> body = new List<Sprite>();
+    [SerializeField]
     private List<Sprite> hats = new List<Sprite>();
     [SerializeField]
+    private List<Sprite> eyes = new List<Sprite>();
+    [SerializeField]
     private List<Sprite> hands = new List<Sprite>();
+
     [SerializeField]
     private List<Sprite> accessories = new List<Sprite>();
     [SerializeField]
     private List<Sprite> feet = new List<Sprite>();
 
+
     // Références vers les emplacements des accessoires
+    public SpriteRenderer bodySlot;
     public SpriteRenderer hatSlot;
-    public SpriteRenderer handsSlot;
-    public SpriteRenderer accessorySlot;
-    public SpriteRenderer feetSlot;
+    public SpriteRenderer eyesSlot;
+    public SpriteRenderer bodyAccessorySlot;
+    public SpriteRenderer leftHandSlot;
+    public SpriteRenderer rightHandSlot;
+    public SpriteRenderer leftFootSlot;
+    public SpriteRenderer rightFootSlot;
 
+    public void AddAccessories(bool symetric = true) {
+      
+        // Ajoute un corps
+        bodySlot.sprite = body[Random.Range(0, body.Count)];
 
-    public void AddAccessories() {
+        // Ajoute des yeux
+        eyesSlot.sprite = eyes[Random.Range(0, eyes.Count)];
+
         // Ajoute un chapeau
         hatSlot.sprite = hats[Random.Range(0, hats.Count)];
-        
+  
+
         // Ajoute des mains
-        handsSlot.sprite = hands[Random.Range(0, hands.Count)];
+        int nb = Random.Range(0, hands.Count);
+        leftHandSlot.sprite = hands[nb];
+        if (!symetric) {
+            nb = Random.Range(0, hands.Count);
+        }
+        rightHandSlot.sprite = hands[nb];
         
         // Ajoute un accessoire
-        accessorySlot.sprite = accessories[Random.Range(0, accessories.Count)];
+        bodyAccessorySlot.sprite = accessories[Random.Range(0, accessories.Count)];
         
         // Ajoute des pieds
-        feetSlot.sprite = feet[Random.Range(0, feet.Count)];
+        nb = Random.Range(0, hands.Count);
+        leftFootSlot.sprite = feet[nb];
+        if (!symetric) {
+            nb = Random.Range(0, hands.Count);
+        }
+        rightFootSlot.sprite = feet[nb];
+    }
+
+    private void Start() {
+        AddAccessories(symetric: false);
     }
 }
