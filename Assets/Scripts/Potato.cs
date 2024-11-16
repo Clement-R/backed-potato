@@ -15,9 +15,9 @@ public class Potato : MonoBehaviour
 
     // Références vers les emplacements des accessoires
     public SpriteRenderer hatSlot;
-    public SpriteRenderer handSlot;
+    public SpriteRenderer handsSlot;
     public SpriteRenderer accessorySlot;
-    public SpriteRenderer footSlot;
+    public SpriteRenderer feetSlot;
 
 
     public void AddAccessories() {
@@ -25,12 +25,12 @@ public class Potato : MonoBehaviour
         hatSlot.sprite = hats[Random.Range(0, hats.Count)];
         
         // Ajoute des mains
-        handSlot.sprite = hands[Random.Range(0, hands.Count)];
+        handsSlot.sprite = hands[Random.Range(0, hands.Count)];
         
         // Ajoute un accessoire
         accessorySlot.sprite = accessories[Random.Range(0, accessories.Count)];
         
         // Ajoute des pieds
-        footSlot.sprite = feet[Random.Range(0, feet.Count)];
+        feetSlot.sprite = feet[Random.Range(0, feet.Count)];
     }
 }
