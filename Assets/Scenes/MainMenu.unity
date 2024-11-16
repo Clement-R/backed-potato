@@ -196,7 +196,7 @@ MonoBehaviour:
   m_shooterStartButton: {fileID: 1981945948}
   m_informerStartButton: {fileID: 1984423310}
   m_shooterSceneName: Subway
-  m_informerSceneName: Informer
+  m_informerSceneName: Lell
 --- !u!4 &85494411
 Transform:
   m_ObjectHideFlags: 0
