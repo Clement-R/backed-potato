@@ -24,6 +24,9 @@ public class ShooterGameplayManager : MonoBehaviour
     [SerializeField]
     private CanvasGroup m_menuCanvasGroup;
 
+    [SerializeField]
+    private Transform m_crosshair;
+
     private bool m_huntStarted = false;
     private float m_huntStartTime = float.NaN;
 
@@ -49,6 +52,9 @@ public class ShooterGameplayManager : MonoBehaviour
         {
             return;
         }
+
+        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        m_crosshair.transform.position = new Vector3(mousePosWorld.x, mousePosWorld.y, 0f);
 
         // Try to shoot
         if (Mouse.current.leftButton.wasPressedThisFrame)

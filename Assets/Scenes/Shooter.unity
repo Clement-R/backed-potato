@@ -1110,6 +1110,7 @@ MonoBehaviour:
   m_nameInput: {fileID: 434854460}
   m_startButton: {fileID: 374104957}
   m_menuCanvasGroup: {fileID: 1445555798}
+  m_crosshair: {fileID: 8853563}
 --- !u!4 &459848375
 Transform:
   m_ObjectHideFlags: 0
