@@ -2,24 +2,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager m_instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!m_instance)
+            {
+                m_instance = (GameManager)FindFirstObjectByType(typeof(GameManager));
+
+                if (!m_instance)
+                {
+                    Debug.LogError("There needs to be one active OptionsManager script on a GameObject in your scene.");
+                }
+            }
+
+            return m_instance;
+        }
+    }
+
+    private int m_seed;
+
     private void Awake()
     {
-        Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SetSeed(int p_seed)
     {
-        int seed = 0;
-        Random.InitState(seed);
-
-        var rigidbody = GetComponent<Rigidbody>();
-        rigidbody.linearVelocity = Vector3.right;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        m_seed = p_seed;
+        Random.InitState(m_seed);
     }
 }

@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BakedPotato.sln"
+    "dotnet.defaultSolution": "baked-potato.sln"
 }
