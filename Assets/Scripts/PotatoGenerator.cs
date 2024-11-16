@@ -21,7 +21,8 @@ public class PotatoGenerator : MonoBehaviour
             var potatoScript = potato.GetComponent<Potato>();
             potatoScript.symetric = symetry;
 
-            if (i == 0) {
+            if (i == 0)
+            {
                 potatoScript.isTarget = true;
             }
         }

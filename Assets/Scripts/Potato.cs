@@ -32,11 +32,12 @@ public class Potato : MonoBehaviour
     [HideInInspector]
     public bool symetric = true;
 
-    [HideInInspector]
+    // [HideInInspector]
     public bool isTarget = false;
 
-    public void AddAccessories() {
-      
+    public void AddAccessories()
+    {
+
         // Ajoute un corps
         bodySlot.sprite = body[Random.Range(0, body.Count)];
 
@@ -45,29 +46,32 @@ public class Potato : MonoBehaviour
 
         // Ajoute un chapeau
         hatSlot.sprite = hats[Random.Range(0, hats.Count)];
-  
+
 
         // Ajoute des mains
         int nb = Random.Range(0, hands.Count);
         leftHandSlot.sprite = hands[nb];
-        if (!symetric) {
+        if (!symetric)
+        {
             nb = Random.Range(0, hands.Count);
         }
         rightHandSlot.sprite = hands[nb];
-        
+
         // Ajoute un accessoire
         bodyAccessorySlot.sprite = accessories[Random.Range(0, accessories.Count)];
-        
+
         // Ajoute des pieds
         nb = Random.Range(0, feet.Count);
         leftFootSlot.sprite = feet[nb];
-        if (!symetric) {
+        if (!symetric)
+        {
             nb = Random.Range(0, hands.Count);
         }
         rightFootSlot.sprite = feet[nb];
     }
 
-    private void Start() {
+    private void Start()
+    {
         AddAccessories();
     }
 }

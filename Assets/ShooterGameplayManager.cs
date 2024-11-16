@@ -65,7 +65,21 @@ public class ShooterGameplayManager : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo))
             {
                 GameObject hitGo = hitInfo.collider.gameObject;
-                Debug.Log(hitGo.name);
+                if (hitGo.TryGetComponent<Potato>(out var potato))
+                {
+                    if (potato.isTarget)
+                    {
+                        //TODO: win condition
+                        Debug.Log("Win, next file");
+                    }
+                    else
+                    {
+                        //TODO: lose condition*
+                        Debug.Log("Lose, potato");
+                    }
+
+                    Debug.Log(hitGo.name);
+                }
             }
         }
     }
