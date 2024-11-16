@@ -28,8 +28,9 @@ public class Potato : MonoBehaviour
     public SpriteRenderer rightHandSlot;
     public SpriteRenderer leftFootSlot;
     public SpriteRenderer rightFootSlot;
+    public bool symetric = true;
 
-    public void AddAccessories(bool symetric = true) {
+    public void AddAccessories() {
       
         // Ajoute un corps
         bodySlot.sprite = body[Random.Range(0, body.Count)];
@@ -53,7 +54,7 @@ public class Potato : MonoBehaviour
         bodyAccessorySlot.sprite = accessories[Random.Range(0, accessories.Count)];
         
         // Ajoute des pieds
-        nb = Random.Range(0, hands.Count);
+        nb = Random.Range(0, feet.Count);
         leftFootSlot.sprite = feet[nb];
         if (!symetric) {
             nb = Random.Range(0, hands.Count);
@@ -62,6 +63,6 @@ public class Potato : MonoBehaviour
     }
 
     private void Start() {
-        AddAccessories(symetric: false);
+        AddAccessories();
     }
 }
