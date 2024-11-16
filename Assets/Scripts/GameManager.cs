@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance;
 
     [HideInInspector]
-    public bool IsPotatoesSymetric = true;
+    public bool IsPotatoesSymetric = false;
 
     public static GameManager Instance
     {
