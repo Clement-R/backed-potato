@@ -25,7 +25,9 @@ public class ShooterGameplayManager : MonoBehaviour
     private CanvasGroup m_menuCanvasGroup;
 
     [SerializeField]
-    private Transform m_crosshair;
+    private RectTransform m_crosshair;
+    [SerializeField]
+    private Canvas m_crosshairCanvas;
 
     private bool m_huntStarted = false;
     private float m_huntStartTime = float.NaN;
@@ -37,7 +39,9 @@ public class ShooterGameplayManager : MonoBehaviour
 
     void Start()
     {
-        ShowMenu();
+        m_huntStarted = true;
+        m_huntStartTime = Time.time;
+        // ShowMenu();
     }
 
     private void Update()
@@ -53,13 +57,27 @@ public class ShooterGameplayManager : MonoBehaviour
             return;
         }
 
-        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        m_crosshair.transform.position = new Vector3(mousePosWorld.x, mousePosWorld.y, 0f);
+        Vector2 pos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            m_crosshairCanvas.transform as RectTransform,
+            Mouse.current.position.ReadValue(),
+            m_crosshairCanvas.worldCamera,
+            out pos
+        );
+
+        m_crosshair.position = m_crosshairCanvas.transform.TransformPoint(pos);
 
         // Try to shoot
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+            Debug.DrawLine(
+                Camera.main.transform.position,
+                Camera.main.transform.position + rayOrigin.direction * 15f,
+                Color.red,
+                10f
+            );
+
             RaycastHit hitInfo;
 
             if (Physics.Raycast(rayOrigin, out hitInfo))
