@@ -41,7 +41,7 @@ public class ShooterGameplayManager : MonoBehaviour
     {
         m_huntStarted = true;
         m_huntStartTime = Time.time;
-        // ShowMenu();
+        ShowMenu();
     }
 
     private void Update()

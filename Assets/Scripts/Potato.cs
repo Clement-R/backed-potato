@@ -34,20 +34,20 @@ public class Potato : MonoBehaviour
     [HideInInspector]
     public bool symetric = true;
 
-    // [HideInInspector]
+    [HideInInspector]
     public bool isTarget = false;
 
     private NavMeshAgent agent;
-
-    private Animator animator;
+    private bool m_isInformerUI = false;
 
     private void Awake()
     {
         // Récupère le composant NavMeshAgent
         agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-
-        animator = GetComponent<Animator>();
+        if (agent != null)
+        {
+            agent.updateRotation = false;
+        }
     }
 
     // Déplace l'objet vers une destination donnée
@@ -59,9 +59,15 @@ public class Potato : MonoBehaviour
         }
     }
 
+    public void SetAsInformerProfile(int p_seed)
+    {
+        Random.InitState(p_seed);
+        AddAccessories();
+        m_isInformerUI = true;
+    }
+
     public void AddAccessories()
     {
-
         // Ajoute un corps
         bodySlot.sprite = body[Random.Range(0, body.Count)];
 
@@ -97,12 +103,19 @@ public class Potato : MonoBehaviour
     private void Start()
     {
         AddAccessories();
-        MoveToRandomPosition();
+
+        if (agent != null)
+        {
+            MoveToRandomPosition();
+        }
     }
 
     private void Update()
     {
-        transform.LookAt(Camera.main.transform);
+        if (!m_isInformerUI)
+        {
+            transform.LookAt(Camera.main.transform);
+        }
     }
 
     // Déplace la patate vers une position aléatoire
