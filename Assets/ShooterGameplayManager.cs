@@ -55,6 +55,12 @@ public class ShooterGameplayManager : MonoBehaviour
     private Button m_resultButton;
     [SerializeField]
     private TMP_Text m_resultButtonText;
+    [SerializeField]
+    private AudioSource m_audioSource;
+    [SerializeField]
+    private AudioClip m_shootSound;
+    [SerializeField]
+    private GameObject m_shootParticles;
 
     private bool m_huntStarted = false;
     private float m_huntStartTime = float.NaN;
@@ -82,7 +88,7 @@ public class ShooterGameplayManager : MonoBehaviour
             return;
         }
 
-        if (m_huntStartTime + 3 > Time.time)
+        if (m_huntStartTime + .25 > Time.time)
         {
             return;
         }
@@ -112,10 +118,14 @@ public class ShooterGameplayManager : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, out hitInfo))
             {
+                // Play sound
+                m_audioSource.PlayOneShot(m_shootSound);
+                // Play vfx
+                Instantiate(m_shootParticles, hitInfo.point, Quaternion.identity);
+
                 GameObject hitGo = hitInfo.collider.gameObject;
                 if (hitGo.TryGetComponent<Potato>(out var potato))
                 {
-                    Debug.Log(hitGo.name);
                     EndHunt(potato.isTarget);
                 }
             }
