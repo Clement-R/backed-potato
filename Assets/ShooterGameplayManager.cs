@@ -55,10 +55,19 @@ public class ShooterGameplayManager : MonoBehaviour
     private Button m_resultButton;
     [SerializeField]
     private TMP_Text m_resultButtonText;
+    [SerializeField]
+    private AudioSource m_audioSource;
+    [SerializeField]
+    private AudioClip m_shootSound;
+    [SerializeField]
+    private GameObject m_shootParticles;
 
     private bool m_huntStarted = false;
     private float m_huntStartTime = float.NaN;
     private int m_currentHash = 0;
+    [SerializeField]
+    private float m_shootCooldown = 0.5f;
+    private float m_lastShoot = 0f;
 
     void Awake()
     {
@@ -82,7 +91,7 @@ public class ShooterGameplayManager : MonoBehaviour
             return;
         }
 
-        if (m_huntStartTime + 3 > Time.time)
+        if (m_huntStartTime + .25 > Time.time)
         {
             return;
         }
@@ -98,8 +107,14 @@ public class ShooterGameplayManager : MonoBehaviour
         m_crosshair.position = m_crosshairCanvas.transform.TransformPoint(pos);
 
         // Try to shoot
+        if (Time.time <= m_lastShoot + m_shootCooldown)
+        {
+            return;
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            m_lastShoot = Time.time;
             Ray rayOrigin = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Debug.DrawLine(
                 Camera.main.transform.position,
@@ -112,10 +127,14 @@ public class ShooterGameplayManager : MonoBehaviour
 
             if (Physics.Raycast(rayOrigin, out hitInfo))
             {
+                // Play sound
+                m_audioSource.PlayOneShot(m_shootSound);
+                // Play vfx
+                Instantiate(m_shootParticles, hitInfo.point, Quaternion.identity);
+
                 GameObject hitGo = hitInfo.collider.gameObject;
                 if (hitGo.TryGetComponent<Potato>(out var potato))
                 {
-                    Debug.Log(hitGo.name);
                     EndHunt(potato.isTarget);
                 }
             }
@@ -166,13 +185,16 @@ public class ShooterGameplayManager : MonoBehaviour
     private void RestartLevel()
     {
         Random.InitState(m_currentHash);
+        InitLevel();
         m_potatoGenerator.RestartLevel();
+        Debug.Log(m_currentHash);
         StartHunt();
     }
 
     private void NextLevel()
     {
         ShowMenu();
+        GameManager.Instance.level += 1;
 
         m_resultCanvasGroup.alpha = 0f;
         m_resultCanvasGroup.blocksRaycasts = false;
@@ -194,6 +216,9 @@ public class ShooterGameplayManager : MonoBehaviour
     private void StartHunt()
     {
         Random.InitState(m_currentHash);
+
+        InitLevel();
+
         m_potatoGenerator.RestartLevel();
 
         HideMenu();
@@ -230,5 +255,13 @@ public class ShooterGameplayManager : MonoBehaviour
     {
         m_menuCanvasGroup.blocksRaycasts = p_usable;
         m_menuCanvasGroup.interactable = p_usable;
+    }
+
+    private void InitLevel()
+    {
+        var level = GameManager.Instance.level;
+
+        float nbPotatoes = (float)(1.089 * Math.Pow(level, 2) - 1.117 * level + 2.592);
+        m_potatoGenerator.nbPotatoes = (int)Math.Min(nbPotatoes, 100);
     }
 }
