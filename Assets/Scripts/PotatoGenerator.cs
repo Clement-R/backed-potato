@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,6 +17,8 @@ public class PotatoGenerator : MonoBehaviour
     [SerializeField]
     private float m_navmeshRange;
 
+    private List<GameObject> m_potatoes = new List<GameObject>();
+
     private void OnDrawGizmos()
     {
         if (m_navmeshCenter == null)
@@ -27,15 +30,17 @@ public class PotatoGenerator : MonoBehaviour
         Gizmos.DrawWireSphere(m_navmeshCenter.transform.position, m_navmeshRange);
     }
 
-    public void InitPotatoGenerator()
+    public void SpawnPotatoes()
     {
         Debug.Log("PotatoGenerator Start, nbPotatoes: " + nbPotatoes + "Level: " + GameManager.Instance.level);
         bool symetry = GameManager.Instance.IsPotatoesSymetric;
         for (int i = 0; i < nbPotatoes; i++)
         {
-            RandomPoint(m_navmeshCenter.position, m_navmeshRange, out var position);
+            RandomPointOnNavMesh(m_navmeshCenter.position, m_navmeshRange, out var position);
 
             var potato = Instantiate(potatoPrefab, position, Quaternion.identity);
+            m_potatoes.Add(potato);
+
             potato.name = $"Potato : {Random.Range(0, 100)}";
 
             var potatoScript = potato.GetComponent<Potato>();
@@ -49,7 +54,15 @@ public class PotatoGenerator : MonoBehaviour
         }
     }
 
-    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    public void RestartLevel()
+    {
+        m_potatoes.ForEach((potato) => { Destroy(potato.gameObject); });
+        m_potatoes.Clear();
+
+        SpawnPotatoes();
+    }
+
+    bool RandomPointOnNavMesh(Vector3 center, float range, out Vector3 result)
     {
         for (int i = 0; i < 30; i++)
         {

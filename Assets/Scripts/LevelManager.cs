@@ -22,6 +22,6 @@ public class LevelManager : MonoBehaviour {
         potatoGenerator = FindAnyObjectByType<PotatoGenerator>();
         float nbPotatoes = (float)(1.089 * Math.Pow(lvl, 2) - 1.117 * lvl + 2.592);
         potatoGenerator.nbPotatoes = (int) Math.Min(nbPotatoes, 100);
-        potatoGenerator.InitPotatoGenerator();
+        potatoGenerator.SpawnPotatoes();
     }
 }
