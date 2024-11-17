@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool IsPotatoesSymetric = false;
 
-    private int m_level = 5;
+    private int m_level = 1;
     public int level {
         get { return m_level; }
         set { m_level = value; }
