@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1310712327516209699, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488110616487164277, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473117769320525897, guid: 3787505692af9064f98e716616baa185, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6951898537584906260, guid: 3787505692af9064f98e716616baa185, type: 3}
       propertyPath: m_Name
       value: Potato Informer
