@@ -2,10 +2,13 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class PotatoGenerator : MonoBehaviour
 {
     public GameObject potatoPrefab;
-    public int nbPotatoes = 10;
+
+    [HideInInspector]
+    public int nbPotatoes;
 
     [SerializeField]
     private Transform m_navmeshCenter;
@@ -24,8 +27,9 @@ public class PotatoGenerator : MonoBehaviour
         Gizmos.DrawWireSphere(m_navmeshCenter.transform.position, m_navmeshRange);
     }
 
-    void Start()
+    public void InitPotatoGenerator()
     {
+        Debug.Log("PotatoGenerator Start, nbPotatoes: " + nbPotatoes + "Level: " + GameManager.Instance.level);
         bool symetry = GameManager.Instance.IsPotatoesSymetric;
         for (int i = 0; i < nbPotatoes; i++)
         {
