@@ -28,7 +28,6 @@ public class InformerScreenBehaviour : MonoBehaviour
     private Button m_confirmButton;
     [SerializeField]
     private Animator m_fileAnimator;
-
     void Start()
     {
         m_targetPotato.enabled = false;
