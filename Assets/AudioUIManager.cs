@@ -14,14 +14,13 @@ public class AudioUIManager : MonoBehaviour
     void Start()
     {
         sceneAudioSource = GetComponent<AudioSource>();
-        buttons = FindObjectsByType<Button>(FindObjectsSortMode.None);
-        foreach(var button in buttons)
+        buttons = FindObjectsByType<Button>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        foreach (var button in buttons)
         {
             var interactions = button.gameObject.AddComponent<ButtonInteractionEvents>();
             interactions.audioSource = sceneAudioSource;
             interactions.hoverClip = hoverClip;
             interactions.clickClip = clickClip;
-
         }
     }
 }
