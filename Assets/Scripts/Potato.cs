@@ -102,7 +102,6 @@ public class Potato : MonoBehaviour
 
     private void Start()
     {
-        AddAccessories();
 
         if (agent != null)
         {
