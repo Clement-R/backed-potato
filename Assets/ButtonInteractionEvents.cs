@@ -16,13 +16,13 @@ public class ButtonInteractionEvents : MonoBehaviour, IPointerEnterHandler, IPoi
     public void OnPointerEnter(PointerEventData eventData)
     {
         audioSource.PlayOneShot(hoverClip);
-        onPointerEnter.Invoke();
+        onPointerEnter?.Invoke();
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         audioSource.PlayOneShot(clickClip);
-        onPointerUp.Invoke();
+        onPointerUp?.Invoke();
     }
 
 }
