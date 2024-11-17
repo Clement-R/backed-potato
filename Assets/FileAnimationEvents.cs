@@ -6,11 +6,13 @@ public class FileAnimationEvents : MonoBehaviour
     public GameObject music;
     public AudioClip bangSound;
     private AudioSource _audioSource;
+    private TextManager m_textManager;
 
     private void Start()
     {
         spotLight.SetActive(false);
         _audioSource = GetComponent<AudioSource>();
+        m_textManager = FindAnyObjectByType<TextManager>();
     }
     public void LightFlicker()
     {
@@ -30,5 +32,9 @@ public class FileAnimationEvents : MonoBehaviour
     public void PlayMusic()
     {
         music.SetActive(true);
+    }
+
+    public void UpdateText() {
+        m_textManager.InitText();
     }
 }
