@@ -15,17 +15,14 @@ public class AudioLooper : MonoBehaviour
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _loopStartSamples = (int)(loopStartTime * _audioSource.clip.frequency);
-        _loopEndSamples = (int)(loopEndTime * _audioSource.clip.frequency);
-        loopLengthSamples = _loopEndSamples - _loopStartSamples;
+        _audioSource.time = (float)loopStartTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(_audioSource.timeSamples >= _loopEndSamples)
+        if (_audioSource.time >= (float)loopEndTime)
         {
-            _audioSource.timeSamples -= loopLengthSamples;
+            _audioSource.time = (float)loopStartTime;
         }
     }
 }
