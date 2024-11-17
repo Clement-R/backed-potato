@@ -167,6 +167,7 @@ public class ShooterGameplayManager : MonoBehaviour
     {
         Random.InitState(m_currentHash);
         m_potatoGenerator.RestartLevel();
+        Debug.Log(m_currentHash);
         StartHunt();
     }
 
@@ -195,6 +196,8 @@ public class ShooterGameplayManager : MonoBehaviour
     private void StartHunt()
     {
         Random.InitState(m_currentHash);
+
+        Debug.Log(m_currentHash);
 
         InitLevel();
 
