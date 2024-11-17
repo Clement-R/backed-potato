@@ -729,7 +729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4542ae8d67bc02b47ad6233cc3cdb7c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTriggerVelocityThreshold: 0.1
+  moveTriggerVelocityThreshold: 0.05
 --- !u!114 &4321399561123482143
 MonoBehaviour:
   m_ObjectHideFlags: 0
