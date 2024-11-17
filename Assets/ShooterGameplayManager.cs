@@ -173,6 +173,7 @@ public class ShooterGameplayManager : MonoBehaviour
     private void NextLevel()
     {
         ShowMenu();
+        GameManager.Instance.level += 1;
 
         m_resultCanvasGroup.alpha = 0f;
         m_resultCanvasGroup.blocksRaycasts = false;
@@ -194,6 +195,8 @@ public class ShooterGameplayManager : MonoBehaviour
     private void StartHunt()
     {
         Random.InitState(m_currentHash);
+        InitLevel();
+
         m_potatoGenerator.RestartLevel();
 
         HideMenu();
@@ -230,5 +233,22 @@ public class ShooterGameplayManager : MonoBehaviour
     {
         m_menuCanvasGroup.blocksRaycasts = p_usable;
         m_menuCanvasGroup.interactable = p_usable;
+    }
+
+    private void InitLevel()
+    {
+        var level = GameManager.Instance.level;
+
+        if (level <= 3)
+        {
+            GameManager.Instance.IsPotatoesSymetric = true;
+        }
+        else
+        {
+            GameManager.Instance.IsPotatoesSymetric = false;
+        }
+
+        float nbPotatoes = (float)(1.089 * Math.Pow(level, 2) - 1.117 * level + 2.592);
+        m_potatoGenerator.nbPotatoes = (int)Math.Min(nbPotatoes, 100);
     }
 }
