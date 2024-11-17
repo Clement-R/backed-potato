@@ -2584,6 +2584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab723f577be1a143b12c96d3d85363c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  namesJson: {fileID: 4900000, guid: 92a091fc9bbf193448f065d83b9d0d85, type: 3}
   m_targetNameText: {fileID: 528750367}
   m_targetPotato: {fileID: 815993285}
   m_nextTargetButton: {fileID: 890883581}

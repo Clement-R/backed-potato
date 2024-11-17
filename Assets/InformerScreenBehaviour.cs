@@ -5,9 +5,26 @@ using TMPro;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
+
+[System.Serializable]
+public class Target
+{
+    public string name;
+}
+
+[System.Serializable]
+public class Targets
+{
+    public Target[] targets;
+}
 
 public class InformerScreenBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    public TextAsset namesJson;
+
     [SerializeField]
     private TMP_Text m_targetNameText;
 
@@ -28,6 +45,9 @@ public class InformerScreenBehaviour : MonoBehaviour
     private Button m_confirmButton;
     [SerializeField]
     private Animator m_fileAnimator;
+
+    private List<string> m_targetNames = new List<string>();
+
     void Start()
     {
         m_targetPotato.enabled = false;
@@ -40,6 +60,17 @@ public class InformerScreenBehaviour : MonoBehaviour
         m_nextTargetButton.onClick.AddListener(() => { SetPopupVisible(true); });
 
         m_confirmButton.onClick.AddListener(NextTarget);
+
+        Targets targetsInJson = JsonUtility.FromJson<Targets>(namesJson.text);
+        m_targetNames = targetsInJson.targets.Select(e => e.name).ToList();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateTargetName();
+        }
     }
 
     private void SetPopupVisible(bool p_visible)
@@ -61,45 +92,22 @@ public class InformerScreenBehaviour : MonoBehaviour
         SetPopupVisible(false);
         m_fileAnimator.SetBool("Visible", false);
         yield return new WaitForSeconds(2.5f);
-        yield return GenerateTargetName();
+        GenerateTargetName();
         m_fileAnimator.SetBool("Visible", true);
         yield return new WaitForSeconds(2.5f);
         m_nextTargetButton.gameObject.SetActive(true);
     }
 
-    private IEnumerator GenerateTargetName()
+    private void GenerateTargetName()
     {
-        var url = "https://api.phage.directory/utility/api/animals?num=1";
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
+        var randomAnimal = m_targetNames[Random.Range(0, m_targetNames.Count)];
+        randomAnimal = Regex.Replace(randomAnimal, @"[^a-zA-Z-]", "");
+        m_targetNameText.text = randomAnimal;
+        m_targetName = randomAnimal;
 
-            string[] pages = url.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    var randomAnimal = webRequest.downloadHandler.text;
-                    randomAnimal = Regex.Replace(randomAnimal, @"[^a-zA-Z-]", "");
-                    m_targetNameText.text = randomAnimal;
-                    m_targetName = randomAnimal;
-
-                    var hash = m_targetName.GetPotatoHash();
-                    m_targetPotato.symetric = GameManager.Instance.IsPotatoesSymetric;
-                    m_targetPotato.SetAsInformerProfile(hash);
-                    m_targetPotato.enabled = true;
-
-                    break;
-            }
-        }
+        var hash = m_targetName.GetPotatoHash();
+        m_targetPotato.symetric = GameManager.Instance.IsPotatoesSymetric;
+        m_targetPotato.SetAsInformerProfile(hash);
+        m_targetPotato.enabled = true;
     }
 }
