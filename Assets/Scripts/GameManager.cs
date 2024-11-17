@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public bool IsPotatoesSymetric = false;
 
+    private int m_level = 1;
+    public int level {
+        get { return m_level; }
+        set { m_level = value; }
+    }
+
     public static GameManager Instance
     {
         get
@@ -30,8 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // a faire en fonction des niveau
-        IsPotatoesSymetric = true;
         DontDestroyOnLoad(gameObject);
     }
 
