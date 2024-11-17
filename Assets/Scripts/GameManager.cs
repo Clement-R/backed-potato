@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
         set
         {
             m_level = value;
-            IsPotatoesSymetric = level <= 3;
+            IsPotatoesSymetric = level <= 4;
         }
     }
 
