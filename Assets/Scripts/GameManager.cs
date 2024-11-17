@@ -9,9 +9,14 @@ public class GameManager : MonoBehaviour
     public bool IsPotatoesSymetric = false;
 
     private int m_level = 1;
-    public int level {
+    public int level
+    {
         get { return m_level; }
-        set { m_level = value; }
+        set
+        {
+            m_level = value;
+            IsPotatoesSymetric = level <= 3;
+        }
     }
 
     public static GameManager Instance

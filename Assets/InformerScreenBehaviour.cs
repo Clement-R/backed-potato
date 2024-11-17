@@ -52,6 +52,7 @@ public class InformerScreenBehaviour : MonoBehaviour
 
     private void NextTarget()
     {
+        GameManager.Instance.level += 1;
         StartCoroutine(WaitForNextTarget());
     }
 

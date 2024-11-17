@@ -65,6 +65,9 @@ public class ShooterGameplayManager : MonoBehaviour
     private bool m_huntStarted = false;
     private float m_huntStartTime = float.NaN;
     private int m_currentHash = 0;
+    [SerializeField]
+    private float m_shootCooldown = 0.5f;
+    private float m_lastShoot = 0f;
 
     void Awake()
     {
@@ -104,8 +107,14 @@ public class ShooterGameplayManager : MonoBehaviour
         m_crosshair.position = m_crosshairCanvas.transform.TransformPoint(pos);
 
         // Try to shoot
+        if (Time.time <= m_lastShoot + m_shootCooldown)
+        {
+            return;
+        }
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            m_lastShoot = Time.time;
             Ray rayOrigin = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
             Debug.DrawLine(
                 Camera.main.transform.position,
@@ -176,6 +185,7 @@ public class ShooterGameplayManager : MonoBehaviour
     private void RestartLevel()
     {
         Random.InitState(m_currentHash);
+        InitLevel();
         m_potatoGenerator.RestartLevel();
         StartHunt();
     }
@@ -249,15 +259,6 @@ public class ShooterGameplayManager : MonoBehaviour
     private void InitLevel()
     {
         var level = GameManager.Instance.level;
-
-        if (level <= 3)
-        {
-            GameManager.Instance.IsPotatoesSymetric = true;
-        }
-        else
-        {
-            GameManager.Instance.IsPotatoesSymetric = false;
-        }
 
         float nbPotatoes = (float)(1.089 * Math.Pow(level, 2) - 1.117 * level + 2.592);
         m_potatoGenerator.nbPotatoes = (int)Math.Min(nbPotatoes, 100);

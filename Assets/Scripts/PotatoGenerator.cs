@@ -33,7 +33,7 @@ public class PotatoGenerator : MonoBehaviour
     public void SpawnPotatoes()
     {
         Debug.Log("PotatoGenerator Start, nbPotatoes: " + nbPotatoes + "Level: " + GameManager.Instance.level);
-        
+
         bool symetry = GameManager.Instance.IsPotatoesSymetric;
 
         for (int i = 0; i < nbPotatoes; i++)
@@ -43,7 +43,6 @@ public class PotatoGenerator : MonoBehaviour
             var potato = Instantiate(potatoPrefab, position, Quaternion.identity);
             m_potatoes.Add(potato);
 
-            potato.name = $"Potato : {Random.Range(0, 100)}";
 
             var potatoScript = potato.GetComponent<Potato>();
             potatoScript.symetric = symetry;
@@ -56,6 +55,8 @@ public class PotatoGenerator : MonoBehaviour
             {
                 potatoScript.isTarget = true;
             }
+
+            potato.name = $"Potato : {Random.Range(0, 100)}";
         }
     }
 
