@@ -3428,12 +3428,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb0a89029a87045966ff09f03bbd66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_potatoGenerator: {fileID: 0}
   m_fadeDuration: 1
   m_nameInput: {fileID: 434854460}
   m_startButton: {fileID: 374104957}
   m_menuCanvasGroup: {fileID: 1445555798}
   m_crosshair: {fileID: 1844639929}
   m_crosshairCanvas: {fileID: 1951540817}
+  m_resultFadeDuration: 1
+  m_resultCanvasGroup: {fileID: 0}
+  m_textCanvasGroup: {fileID: 0}
+  m_resultText: {fileID: 0}
+  m_winText: Target smashed
+  m_winColor: {r: 0, g: 0, b: 0, a: 0}
+  m_loseText: Wrong potato
+  m_loseColor: {r: 0, g: 0, b: 0, a: 0}
+  m_nextTargetText: Next target
+  m_restartText: Restart mission
+  m_resultButton: {fileID: 0}
+  m_resultButtonText: {fileID: 0}
 --- !u!4 &459848375
 Transform:
   m_ObjectHideFlags: 0
@@ -3850,7 +3863,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPotatoesSymetric: 1
-  level: 0
 --- !u!4 &678132621
 Transform:
   m_ObjectHideFlags: 0
@@ -42123,6 +42135,10 @@ PrefabInstance:
     - target: {fileID: 2284249626849896852, guid: caf9546af3dc9d040a7e27037b76ac3a, type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2284249626849896852, guid: caf9546af3dc9d040a7e27037b76ac3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
