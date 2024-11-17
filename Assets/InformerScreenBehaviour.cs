@@ -95,6 +95,7 @@ public class InformerScreenBehaviour : MonoBehaviour
                     m_targetName = randomAnimal;
 
                     var hash = m_targetName.GetPotatoHash();
+                    m_targetPotato.symetric = GameManager.Instance.IsPotatoesSymetric;
                     m_targetPotato.SetAsInformerProfile(hash);
                     m_targetPotato.enabled = true;
 
